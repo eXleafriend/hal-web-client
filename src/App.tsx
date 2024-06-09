@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { JsonObject, Link, LinkRelation } from './types';
+import LinksView from './LinksView';
+import { HrefContext } from './HrefContext';
 
 function readLink(rel: LinkRelation): (object: object) => Link | undefined {
   return object => {
@@ -23,8 +25,8 @@ function App() {
   const [baseUrlEnabled, setBaseUrlEnabled] = useState(false);
 
   const [href, setHref] = useState(baseUrl);
-  const [_links, set_links] = useState([] as (Link | undefined)[]);
-  const [, set_body] = useState(undefined as (JsonObject | undefined));
+  const [, set_links] = useState([] as (Link | undefined)[]);
+  const [_body, set_body] = useState(undefined as (JsonObject | undefined));
   const [_embedded, set_embedded] = useState(undefined as ({ [key: string]: object[] } | undefined));
 
   function setBaseUrl(_baseUrl: string): void {
@@ -99,9 +101,9 @@ function App() {
           </>
         );
       })}
-      {_links.map(link => link === undefined ? <></> : (
-        <button onClick={() => setHref(link.href)}>{link.title || link.rel}</button>
-      ))}
+      <HrefContext.Provider value={{ setHref }}>
+        <LinksView entity={_body || {}} />
+      </HrefContext.Provider>
     </>
   )
 }
