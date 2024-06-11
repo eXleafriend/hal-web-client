@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { JsonObject, JsonValue } from "./types";
 import { HrefContext } from "./HrefContext";
+import { CollectionModel, EntityModel, Link } from "./types";
 
 export interface LinksProps {
-  entity: JsonObject;
+  entity: EntityModel | CollectionModel;
 }
 
 function LinksView({ entity }: LinksProps) {
@@ -13,13 +13,9 @@ function LinksView({ entity }: LinksProps) {
   }
 
   const _links = entity._links;
-  if (Array.isArray(_links)) {
+  if (_links === undefined) {
     return <></>
-  } else if (_links === null
-    || typeof _links === "boolean"
-    || typeof _links === "number"
-    || typeof _links === "string") {
-    return <></>
+
   }
 
   return (<div className="links">
@@ -27,7 +23,7 @@ function LinksView({ entity }: LinksProps) {
       const link = _links[rel];
       if (Array.isArray(link)) {
         return link.map(l => LinkView(rel, l))
-        } else {
+      } else {
         return LinkView(rel, link);
       }
     })}
@@ -35,7 +31,7 @@ function LinksView({ entity }: LinksProps) {
 
 }
 
-function LinkView(rel: string, link: JsonValue) {
+function LinkView(rel: string, link: Link) {
 
   const { setHref } = useContext(HrefContext);
 
