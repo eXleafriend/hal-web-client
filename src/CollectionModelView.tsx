@@ -21,7 +21,7 @@ function CollectionModelView({ name, models, setHref }: CollectionModelProps) {
   console.log("propNames: " + propNames)
   return (<>
     <h2>{name}</h2>
-    <table>
+    <table className="table table-striped">
       <thead>
         <tr>
           {propNames.map(propName => (
@@ -34,7 +34,7 @@ function CollectionModelView({ name, models, setHref }: CollectionModelProps) {
         {models.map((model, i) => {
           return (<tr key={i}>
             {propNames.map(propName => (
-              <td key={propName}>{String((model as JsonObject)[propName])}</td>
+              <td key={propName} style={{ whiteSpace: "pre-wrap" }}>{String((model as JsonObject)[propName])}</td>
             ))}
             <td>
               <HrefContext.Provider value={{ setHref }}>

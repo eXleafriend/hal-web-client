@@ -52,7 +52,7 @@ function LinkView(rel: string, link: Link) {
   const title = "title" in link ? String(link.title) : rel;
 
   return (
-    <button onClick={() => setHref(href)}>{title}</button>
+    <button className="btn btn-secondary" style={{margin: "0 0.25em"}} onClick={() => setHref(href)}>{title}</button>
   );
 }
 
