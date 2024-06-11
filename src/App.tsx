@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 import ModelView from './ModelView';
 import { CollectionModel, EntityModel } from './types';
 
