@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import ModelView from './ModelView';
 import { CollectionModel, EntityModel } from './types';
