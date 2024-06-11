@@ -41,11 +41,9 @@ function App() {
 
   return (
     <>
-      <div>
-        <input type="text" placeholder="http://localhost:8080" value={baseUrl || ""} onChange={e => setBaseUrl(e.target.value)} />
-      </div>
-      <form>
-        <button disabled={!baseUrlEnabled}>Call</button>
+      <form className="input-group mb-3">
+        <input type="text" className="form-control" placeholder="http://localhost:8080" value={baseUrl || ""} onChange={e => setBaseUrl(e.target.value)} />
+        <button className="btn btn-primary" disabled={!baseUrlEnabled}>Call</button>
       </form>
       {model === undefined ? (<></>) : (<ModelView model={model} setHref={setHref} />)}
     </>

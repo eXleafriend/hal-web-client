@@ -21,7 +21,7 @@ function CollectionModelView({ name, models, setHref }: CollectionModelProps) {
   console.log("propNames: " + propNames)
   return (<>
     <h2>{name}</h2>
-    <table>
+    <table className="table table-striped">
       <thead>
         <tr>
           {propNames.map(propName => (

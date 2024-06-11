@@ -10,7 +10,7 @@ export interface EntityModelProps {
 
 function EntityModelView({ model, setHref }: EntityModelProps) {
   return (
-    <table>
+    <table className="table table-striped">
       <tbody>
         {Object.keys(model).map(propName => (propName.startsWith("_") ? (<React.Fragment key={propName}></React.Fragment>) : (
           <tr key={propName}>
